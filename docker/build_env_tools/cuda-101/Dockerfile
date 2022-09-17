@@ -1,8 +1,5 @@
 FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
-ARG ROOT_PASSWD
-ARG PASSWD
-
 # Set up R(Reference rocker/r-ver)
 ARG R_VERSION_FULL=4.1.0
 ARG R_VERSION=4
@@ -173,9 +170,7 @@ RUN Rscript -e "install.packages(c('githubinstall', 'ranger'))"
 # Install torch for R
 RUN Rscript -e "install.packages('torch')"
 RUN Rscript -e "remotes::install_github('mlverse/torchvision')"
-RUN echo 'root:'${ROOT_PASSWD} | chpasswd
-RUN echo 'rstudio:'${PASSWD} | chpasswd
-RUN echo "rstudio ALL=(ALL:ALL) ALL" >> /etc/sudoers
+RUN echo "rstudio ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN gpasswd -a rstudio sudo
 
 CMD ["/init"]

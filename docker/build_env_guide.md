@@ -13,13 +13,12 @@ The directory structure of this tools as follows.
 
 ```bash
 build_env_tools/
-├── cuda-102
+├── build_env.sh
+├── cuda-101
 │   ├── Dockerfile
-│   ├── build_env.sh
 │   └── docker-compose.yml
-└── cuda-113
+└── cuda-111
     ├── Dockerfile
-    ├── build_env.sh
     └── docker-compose.yml
 ```
 
@@ -32,41 +31,33 @@ git clone https://github.com/mlverse/torch.git
 ```
 
 ### 2. Change directory
-Move into `torch/docker/build_env_tools/cuda-xxx` directory.`xxx` is CUDA version which you would like to use.
-* If you would like to use CUDA 11, you should move into cuda-113 directory.
-* If you will install CUDA 10 in your machine, you must move into cuda-102 directory.
+Move into `torch/docker/build_env_tools`.
 
 
 ```bash
-cd torch/docker/build_env_tools/cuda-xxx
+cd torch/docker/build_env_tools/
 ```
 
 ### 3. Create `rstudio_home` directory
 Create `rstudio_home` directory outside of torch directory which uses home directory of container.(just doing following command.) If you would like to use another directory as home directory, you must modify `docker-compose.yml`(`Path` strings at `volume` section).
 
 ```bash
-mkdir  ../../../../rstudio_home
+mkdir  ../../../rstudio_home
 ```
 
-### 4. Create `auth.txt`
-Create `auth.txt` into `torch/docker/build_env_tools/cuda-xxx` and write root user's password and rstudio(default user) user's password which you would like to set.
-
-```bash
-echo "rstudio" >> auth.txt # root user's password
-echo "rstudio" >> auth.txt # rstudio user's password
-```
-
-### 5. Run `build_env.sh`
+### 4. Run `build_env.sh`
 You just implement `build_env.sh`, and you can build a Torch RStudio container image.
+* Please be careful not to forget `cuda-xxx` option.
+* You can set cuda-101 or cuda-111.
 
 ```bash
-./build_env.sh
+./build_env.sh cuda-xxx
 ```
 
 If you would like to build a container image again without using chache files, you should use `-nc` option.
 
 ```bash
-./build_env.sh -nc
+./build_env.sh cuda-xxx -nc
 ```
 
 #### (Option): Building Japanese env
@@ -81,21 +72,7 @@ If you would like to use Japanese version of Torch RStudio env, you should delet
 # RUN ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ```
 
-### 6. Start Torch RStudio Container
-Just doing following command.
-
-```bash
-docker-compose up -d
-```
-
-### 7. Login RStudio
+### 5. Login RStudio
 Open your web browser and access `localhost:8787`.
 
 You implement `torch` first time, additional packages which needs for it will be installed in your env. If your `GPU` is available, `cuda_is_available()` returns `True`.
-
-### 8. Delete `auth.txt`
-If you would like not to leak out your container's password, delete `auth.txt`.
-
-```bash
-rm auth.txt
-```
