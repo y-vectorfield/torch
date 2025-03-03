@@ -1,29 +1,26 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 3.1.11
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  examples/basic-autograd: basic-autograd.html
-  examples/basic-nn-module: basic-nn-module.html
-  examples/dataset: dataset.html
-  examples/index: index.html
+  articles/amp: amp.html
+  examples/basic-autograd: examples/basic-autograd.html
+  examples/basic-nn-module: examples/basic-nn-module.html
+  examples/dataset: examples/dataset.html
+  distributions: distributions.html
   extending-autograd: extending-autograd.html
-  getting-started/autograd: autograd.html
-  getting-started/control-flow-and-weight-sharing: control-flow-and-weight-sharing.html
-  getting-started/custom-nn: custom-nn.html
-  getting-started/neural-networks: neural-networks.html
-  getting-started/new-autograd-functions: new-autograd-functions.html
-  getting-started/nn: nn.html
-  getting-started/optim: optim.html
-  getting-started/tensors-and-autograd: tensors-and-autograd.html
-  getting-started/tensors: tensors.html
-  getting-started/warmup: warmup.html
-  getting-started/what-is-torch: what-is-torch.html
+  examples/index: examples/index.html
+  tensor/index: tensor/index.html
   indexing: indexing.html
   installation: installation.html
   loading-data: loading-data.html
+  articles/memory-management: memory-management.html
+  articles/modifying-source-code: modifying-source-code.html
+  python-to-r: python-to-r.html
   serialization: serialization.html
-  tensor/index: index.html
   tensor-creation: tensor-creation.html
+  torchscript: torchscript.html
   using-autograd: using-autograd.html
-last_built: 2020-10-20T20:53Z
-
+last_built: 2025-03-03T16:33Z
+urls:
+  reference: https://torch.mlverse.org/docs/reference
+  article: https://torch.mlverse.org/docs/articles
